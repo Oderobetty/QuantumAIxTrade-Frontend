@@ -1,15 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const loginBtn = document.getElementById('derivLoginBtn');
+// Check URL for OAuth token
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get('token');
 
-  loginBtn.addEventListener('click', () => {
-    loginBtn.innerHTML = '<div class="loader"></div> Connecting...';
-    loginBtn.disabled = true;
+if (token) {
+  // Here you'd typically send token to your backend
+  console.log("Received token: ", token);
 
-    const appId = '76613'; // your Deriv App ID
-    const redirectUri = encodeURIComponent('https://oderobetty.github.io/chartbotaixtrade-/callback.html');
-
-    const authUrl = `https://oauth.deriv.com/oauth2/authorize?app_id=${appId}&redirect_uri=${redirectUri}&response_type=token`;
-
-    window.location.href = authUrl;
-  });
-});
+  // Redirect or show success message
+  window.location.href = 'https://quantumaixtrade-backend.onrender.com/success'; // or your dashboard
+} else {
+  console.log("No token found in URL.");
+}
