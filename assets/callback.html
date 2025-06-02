@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <h2 style="color:white; text-align:center;">Connecting...</h2>
+  <script>
+    const hashParams = new URLSearchParams(window.location.hash.substr(1));
+    const token = hashParams.get('access_token');
+    if (token) {
+      window.location.href = `https://quantumaixtrade-backend.onrender.com/auth?token=${token}`;
+    } else {
+      document.body.innerHTML = '<h2 style="color:white; text-align:center;">Failed to retrieve token</h2>';
+    }
+  </script>
+</body>
+</html>
